@@ -175,8 +175,8 @@ coreo_uni_util_jsrunner "jsrunner-output-table" do
     var a = s.split('.');
     for (var i = 0, n = a.length; i < n; ++i) {
         var k = a[i];
-    #    if (k in o) {
-    #        o = o[k];
+        if (k in o) {
+            o = o[k];
         } else {
             return;
         }
