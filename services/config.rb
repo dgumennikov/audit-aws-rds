@@ -360,7 +360,7 @@ var rollup_string = "";
 let rollup = '';
 let emailText = '';
 let numberOfViolations = 0;
-for (var entry=0; entry < json_input.length; entry++) {
+for (var entry0 entry < json_input.length; entry++) {
     if (json_input[entry]['endpoint']['to'].length) {
         numberOfViolations += parseInt(json_input[entry]['num_violations']);
         emailText += "recipient: " + json_input[entry]['endpoint']['to'] + " - " + "nViolations: " + json_input[entry]['num_violations'] + "\\n";
@@ -385,9 +385,13 @@ coreo_uni_util_notify "advise-aws-rollup" do
   action :${AUDIT_AWS_ROLLUP_REPORT}
   type 'email'
   allow_empty true
-  send_on 'aeo_uni_util_jsrunner.tags-rollup-aws.return
+  send_on 'always'
+  payload '
+composite name: PLAN::stack_name
+plan name: PLAN::name
+COMPOSITE::coreo_uni_util_jsrunner.tags-rollup-aws.return
   '
-  payload_type text'
+  payload_type 'text'
   endpoint ({
       :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo aws advisor alerts on PLAN::stack_name :: PLAN::name'
   })
