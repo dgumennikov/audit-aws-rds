@@ -385,13 +385,9 @@ coreo_uni_util_notify "advise-aws-rollup" do
   action :${AUDIT_AWS_ROLLUP_REPORT}
   type 'email'
   allow_empty true
-  send_on 'always'
-  payload '
-composite name: PLAN::stack_name
-plan name: PLAN::name
-COMPOSITE::coreo_uni_util_jsrunner.tags-rollup-aws.return
+  send_on 'aeo_uni_util_jsrunner.tags-rollup-aws.return
   '
-  payload_type 'text'
+  payload_type text'
   endpoint ({
       :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo aws advisor alerts on PLAN::stack_name :: PLAN::name'
   })
