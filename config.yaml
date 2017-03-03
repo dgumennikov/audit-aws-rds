@@ -141,6 +141,7 @@ variables:
             - ec2-TCP-21
             - ec2-TCP-20
             - ec2-ports-range
+            - ec2-TCP-22
     AUDIT_AWS_S3_ALERT_LIST:
         description: alert list for generating notifications
         required: true
